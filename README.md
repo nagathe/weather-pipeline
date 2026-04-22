@@ -12,6 +12,7 @@ Projet d'implémentation d'un pipeline (simple) ETL :
 - Requests
 
 ## Structure du projet
+```
 │
 ├── data/
 ├── src/
@@ -23,6 +24,7 @@ Projet d'implémentation d'un pipeline (simple) ETL :
 ├── config.py
 ├── requirements.txt
 └── README.md
+```
 
 ## How to run
 ```bash
