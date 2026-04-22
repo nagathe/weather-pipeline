@@ -28,16 +28,23 @@ Projet d'implémentation d'un pipeline (simple) ETL :
 
 ## How to run
 ```bash
-python src/main.py
+git clone https://github.com/YOUR_USERNAME/weather-pipeline.git
+cd weather-pipeline
 
+pip install -r requirements.txt
+
+python src/main.py
 ```
 
 ## Features
-- Modular pipeline (ETL)
-- Clean project structure
-- Easy to extend
+- Modular ETL pipeline (extract / transform / load)
+- Separation of concerns between pipeline steps
+- Easily extensible architecture
+- Simple and readable codebase
 
 ## Next Improvements
 - Add logging
-- Add error handling
-- Add scheduling (cron / Airflow)
+- Add unit tests
+- Dockerize the pipeline
+- Schedule execution (cron / Airflow)
+- Store data in a database (PostgreSQL, BigQuery...)
