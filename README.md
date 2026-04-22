@@ -31,6 +31,6 @@ python src/main.py
 - Easy to extend
 
 ## Next Improvements
-Add logging
-Add error handling
-Add scheduling (cron / Airflow)
+- Add logging
+- Add error handling
+- Add scheduling (cron / Airflow)
