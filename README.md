@@ -11,13 +11,18 @@ Projet d'implémentation d'un pipeline (simple) ETL :
 - Pandas
 - Requests
 
-## PStructure du projet
-src/
-    extract.py
-    transform.py
-    load.py
-    main.py
-data/
+## Structure du projet
+│
+├── data/
+├── src/
+│   ├── extract.py
+│   ├── transform.py
+│   ├── load.py
+│   └── main.py
+│
+├── config.py
+├── requirements.txt
+└── README.md
 
 ## How to run
 ```bash
