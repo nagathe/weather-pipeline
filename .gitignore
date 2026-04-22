@@ -1,4 +1,11 @@
+# Environnement
 venv/
+.env
+
+# Python
 __pycache__/
 *.pyc
-.env
+*.pyo
+
+# Data (optionnel — à toi de choisir)
+data/*
