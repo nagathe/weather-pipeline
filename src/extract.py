@@ -31,6 +31,22 @@ def extract_weather(city: str) -> Dict[str, Any]:
         "datetime": datetime.utcfromtimestamp(timestamp).isoformat() if timestamp else None,
     }
 
+def extract(cities: List[str]) -> List[Dict[str, Any]]:
+    """
+    Wrapper appelé par main.py — itère sur une liste de villes.
+    """
+    results = []
+    for city in cities:
+        print(f"[INFO] Fetching data for {city}...")
+        try:
+            result = extract_weather(city)
+            results.append(result)
+        except requests.RequestException as e:
+            print(f"[ERROR] API error for {city}: {e}")
+        except Exception as e:
+            print(f"[ERROR] Unexpected error for {city}: {e}")
+    return results
+
 
 def main() -> None:
     """
