@@ -110,3 +110,8 @@ streamlit run src/app_streamlit.py
 - [ ] Planifier l'exécution (cron / Airflow)
 - [ ] Migrer vers PostgreSQL ou BigQuery
 - [ ] Déployer le dashboard Streamlit en ligne
+
+## Docker
+docker run --rm --env-file .env weather-pipeline:1.0
+-- attention => données du pipeline sont dans le docker donc dès qu'on l'arrête, on perd tout
+-- pour ne pas perdre les données : docker run --rm --env-file .env -v $(pwd)/data:/app/data weather-pipeline:1.0

@@ -1,8 +1,8 @@
 certifi==2026.4.22
 charset-normalizer==3.4.7
 idna==3.12
-numpy==2.4.4
-pandas==3.0.2
+numpy==1.26.4
+pandas==2.2.3          # ✅ Au lieu de 3.0.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
 requests==2.33.1
