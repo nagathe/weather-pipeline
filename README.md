@@ -110,5 +110,3 @@ streamlit run src/app_streamlit.py
 - [ ] Planifier l'exécution (cron / Airflow)
 - [ ] Migrer vers PostgreSQL ou BigQuery
 - [ ] Déployer le dashboard Streamlit en ligne
-- [ ] Une exécution récurrente (cron / Airflow))
-
