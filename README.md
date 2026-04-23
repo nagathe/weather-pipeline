@@ -71,13 +71,19 @@ pip install -r requirements.txt
 
 ## How to run
 1. Pipeline ETL (extract → transform → load) → Récupère les données météo, les transforme et les stocke en CSV + SQLite.
-```python src/main.py```
+```
+python src/main.py
+```
 
 2. Visualisation statique → Génère un dashboard matplotlib et le sauvegarde dans data/dashboard.png.
-```python src/visualize.py```
+```
+python src/visualize.py
+```
 
 3. Dashboard interactif → Ouvre un dashboard interactif dans le navigateur sur http://localhost:8501.
-```streamlit run src/app_streamlit.py```
+```
+streamlit run src/app_streamlit.py
+```
 
 ## Features
 - Modular ETL pipeline (extract / transform / load)
@@ -104,3 +110,5 @@ pip install -r requirements.txt
 - [ ] Planifier l'exécution (cron / Airflow)
 - [ ] Migrer vers PostgreSQL ou BigQuery
 - [ ] Déployer le dashboard Streamlit en ligne
+- [ ] Une exécution récurrente (cron / Airflow))
+
