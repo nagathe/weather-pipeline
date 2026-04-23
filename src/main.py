@@ -26,5 +26,7 @@ def run_pipeline(cities: list[str]) -> None:
 
 
 if __name__ == "__main__":
-    CITIES = ["Paris", "London", "Berlin", "Madrid", "Tokyo"]
+    #CITIES = ["Paris", "London", "Berlin", "Madrid", "Tokyo"]
+    CITIES = ["Paris", "London", "Berlin", "Madrid", "Tokyo", "New York", "Dubai", "Sydney", "São Paulo", "Cairo"]
+    # comment faire un appel à deux séries de villes ?
     run_pipeline(CITIES)
