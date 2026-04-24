@@ -14,7 +14,7 @@ from pathlib import Path
 
 #
 import matplotlib
-matplotlib.use("MacOSX")
+matplotlib.use("Agg")
 #
 logger = logging.getLogger(__name__)
 

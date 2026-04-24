@@ -82,6 +82,6 @@ st.title("🌤️ Weather Dashboard")
 
 df = load_data()
 st.success(f"{len(df)} ligne(s) chargée(s) depuis SQLite")
-st.dataframe(df, width="stretch")
+st.dataframe(df, use_container_width=True)
 
 st.pyplot(make_dashboard(df))

@@ -284,6 +284,15 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+  streamlit:
+      build:
+        context: .
+        dockerfile: Dockerfile.streamlit
+      ports:
+        - "8501:8501"
+      volumes:
+        - /Users/Agathe_1/Documents/Travail/Projet Meteo/weather-pipeline/data:/app/data
+      restart: always
+
 volumes:
   postgres-db-volume:
-

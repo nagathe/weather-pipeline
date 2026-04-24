@@ -29,11 +29,16 @@
 - SQLite
 - Matplotlib / Seaborn
 - Streamlit
+- Docker
+- Apache Airflow
 
 ---
 
 ## Structure du projet
 ```text
+│
+├── dags/
+│   └── weather_pipeline_dag.py         # DAG Airflow (ETL + visualisation)
 │
 ├── data/
 │   ├── weather.db                      # Base SQLite (générée auto)
@@ -49,16 +54,19 @@
 │   ├── config.py           # Configuration (villes, paramètres)
 │   └── main.py             # Orchestrateur principal
 │
-├── .env                    # API_KEY=... (non versionné)
+├── Dockerfile                  # Image Docker pipeline ETL
+├── Dockerfile.streamlit        # Image Docker Streamlit
+├── docker-compose.yaml         # Orchestration Airflow + Streamlit
+├── .env                        # API_KEY=... (non versionné)
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Installation
+## Installation locale
 
-```
+```bash
 git clone https://github.com/YOUR_USERNAME/weather-pipeline.git
 cd weather-pipeline
 
@@ -68,50 +76,46 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## How to run (local)
 
-## How to run
 1. Pipeline ETL (extract → transform → load) → Récupère les données météo, les transforme et les stocke en CSV + SQLite.
-```
+```bash
 python src/main.py
 ```
 
 2. Visualisation statique → Génère un dashboard matplotlib et le sauvegarde dans data/dashboard.png.
-```
+```bash
 python src/visualize.py
 ```
 
 3. Dashboard interactif → Ouvre un dashboard interactif dans le navigateur sur http://localhost:8501.
-```
+```bash
 streamlit run src/app_streamlit.py
 ```
 
-## Features
-- Modular ETL pipeline (extract / transform / load)
-- Logging structuré à chaque étape
-- Separation of concerns between pipeline steps
-- Stockage CSV + SQLite avec batch_id
-- Dashboard statique exportable (PNG)
-- Dashboard interactif avec filtres (Streamlit)
-- Easily extensible architecture
-
 ---
 
-## Requêtes visées
-1. **Températures dans le temps** : moyenne/jour, min/max, tendances
-2. **Conditions météo** : combien de jours de pluie ? de soleil ?
-3. **Humidité** : évolution journalière, corrélation avec la météo
-4. **Multi-villes** : Paris vs London, différences de climat ?
+## Installation & Run avec Docker
 
----
+### Pipeline seul
+```bash
+# Sans persistance des données
+docker run --rm --env-file .env nagathe/weather-pipeline:1.0
 
-## Next Improvements
-- [ ] Ajouter des tests unitaires
-- [ ] Dockeriser le pipeline
-- [ ] Planifier l'exécution (cron / Airflow)
-- [ ] Migrer vers PostgreSQL ou BigQuery
-- [ ] Déployer le dashboard Streamlit en ligne
+# Avec persistance des données
+docker run --rm --env-file .env -v $(pwd)/data:/app/data nagathe/weather-pipeline:1.0
+```
 
-## Docker
-docker run --rm --env-file .env weather-pipeline:1.0
--- attention => données du pipeline sont dans le docker donc dès qu'on l'arrête, on perd tout
--- pour ne pas perdre les données : docker run --rm --env-file .env -v $(pwd)/data:/app/data weather-pipeline:1.0
+### Stack complète (Airflow + Streamlit)
+```bash
+# Initialisation (première fois uniquement)
+docker compose up airflow-init
+
+# Lancer tous les services
+docker compose up -d
+```
+
+- **Airflow** : http://localhost:8080 (login: airflow / airflow)
+- **Streamlit** : http://localhost:8501
+
+Le DAG `weather_pipeline` orchestre automatiquement :
